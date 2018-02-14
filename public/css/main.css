@@ -1,0 +1,35 @@
+/* Estilos generales*/
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url('../assets/images/background1.jpg');
+}
+
+/* Estilos a la vista Register */
+
+/* Estilos al navbar */
+.navbar {
+  background-color: #154360;
+}
+
+/* Estilos al h1 */
+.title {
+  color: white;
+  font-size: 3rem;
+}
+
+/* Estilos a los elementos input y label del formulario */
+
+.input-field label {
+  color: #fff;
+}
+
+.input {
+  color: white;
+}
+
+input[type=email]:not(.browser-default), input[type=password]:not(.browser-default) {
+  border-bottom: 1px solid #fff;
+}
