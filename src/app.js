@@ -1,5 +1,5 @@
 $(document).ready(() => {
-  const ul = $('#response-container');
+  const $responseContainer = $('#response-container');
   $('#special-button').one('click', () => {
     const characterInfoRequest = new XMLHttpRequest();
     characterInfoRequest.open('GET', 'https://swapi.co/api/people/');
@@ -9,7 +9,7 @@ $(document).ready(() => {
   });
 
   function bringInfo() {
-    debugger;
+    // debugger;
     const data = JSON.parse(this.responseText);
     console.log(data.results);
     const character = data.results[0];
@@ -23,23 +23,15 @@ $(document).ready(() => {
       response.send(data);
     }; */
 
-    // let $container = '<div class="col s12 m6 l4"></div>';          
-    let $li = '<li></li>';
-    $li.innerText = name;
+    let $container = document.createElement('div');        
+    let $li = document.createElement('li');
+    $li.innerHTML = `<div><span>Name: </span><span>${name}</span></div><div><span>Gender: </span><span>${gender}</span></div><div><span>Height: </span><span>${height}</span></div><div><span>Birth Year: </span><span>${birthYear}</span></div>`;
     $container.append($li);
+    $container.className = 'character-container col s12 m6 l4';
+    $responseContainer.append($container);
   };
 
   function handleError() {
     console.log('Se ha presentado un error');
   };
-  /* characterInfoRequest.get(`https://swapi.co/api/people/1/`, sendCharacterInfo);
-  const sendCharacterInfo = () => {
-*/
 });
-/* window.on('load', (event) => {
-    event.preventDefault();
-    function getInfo() {
-
-    }
-  });
-});*/

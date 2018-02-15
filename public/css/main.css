@@ -49,5 +49,5 @@ input[type=email]:not(.browser-default), input[type=password]:not(.browser-defau
 .character-container {
   background-color: #fff;
   list-style: none;
-  margin-left: none;
+  font-size: 1.2em;
 }

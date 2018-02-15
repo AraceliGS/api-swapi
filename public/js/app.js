@@ -1,7 +1,7 @@
 'use strict';
 
 $(document).ready(function () {
-  var ul = $('#response-container');
+  var $responseContainer = $('#response-container');
   $('#special-button').one('click', function () {
     var characterInfoRequest = new XMLHttpRequest();
     characterInfoRequest.open('GET', 'https://swapi.co/api/people/');
@@ -25,23 +25,15 @@ $(document).ready(function () {
       response.send(data);
     }; */
 
-    // let $container = '<div class="col s12 m6 l4"></div>';          
-    var $li = '<li></li>';
-    $li.innerText = name;
+    var $container = document.createElement('div');
+    var $li = document.createElement('li');
+    $li.innerHTML = '<div><span>Name: </span><span>' + name + '</span></div><div><span>Gender: </span><span>' + gender + '</span></div><div><span>Height: </span><span>' + height + '</span></div><div><span>Birth Year: </span><span>' + birthYear + '</span></div>';
     $container.append($li);
+    $container.className = 'character-container col s12 m6 l4';
+    $responseContainer.append($container);
   };
 
   function handleError() {
     console.log('Se ha presentado un error');
   };
-  /* characterInfoRequest.get(`https://swapi.co/api/people/1/`, sendCharacterInfo);
-  const sendCharacterInfo = () => {
-  */
 });
-/* window.on('load', (event) => {
-    event.preventDefault();
-    function getInfo() {
-
-    }
-  });
-});*/
