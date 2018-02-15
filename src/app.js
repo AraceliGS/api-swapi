@@ -2,25 +2,27 @@ $(document).ready(() => {
   const $responseContainer = $('#response-container');
   const $infoContainer = $('#info-container');
   let $array = [];
-  let $modals = $('.modal');
-  $modals.each((el) => {
-    let modal = $modals[el].id;
-    $array.push(modal);
-    console.log(modal);
-  });
-  console.log($array);
-
-  let $infoModals = $array.map(function(el) {
-    $(`#${el}`).modal();
-    console.log('Soy yo');
-    el.on('click', function() {
-      const characterInfoRequest = new XMLHttpRequest();
-      characterInfoRequest.open('GET', 'https://swapi.co/api/people/');
-      characterInfoRequest.onload = bringInfo;
-      characterInfoRequest.onerror = handleError;
-      characterInfoRequest.send();
+  let $images = $('.starwars-image');
+  $images.each((el) => {
+    debugger;
+    let $thisImage = $images[el];
+    $images[el].on('click', function() {
+      console.log($images[el]);
     });
-  }); 
+  });
+  
+
+  // let $infoModals = $array.map(function(el) {
+  //   $(`#${el}`).modal();
+  //   console.log('Soy yo');
+  //   el.on('click', function() {
+  //     const characterInfoRequest = new XMLHttpRequest();
+  //     characterInfoRequest.open('GET', 'https://swapi.co/api/people/');
+  //     characterInfoRequest.onload = bringInfo;
+  //     characterInfoRequest.onerror = handleError;
+  //     characterInfoRequest.send();
+  //   });
+  // }); 
  
   $('#special-button').one('click', () => {
     const characterInfoRequest = new XMLHttpRequest();

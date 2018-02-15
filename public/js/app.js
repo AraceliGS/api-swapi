@@ -4,23 +4,26 @@ $(document).ready(function () {
   var $responseContainer = $('#response-container');
   var $infoContainer = $('#info-container');
   var $array = [];
-  var $modals = $('.modal');
-  $modals.each(function (el) {
-    var modal = $modals[el].id;
-    $array.push(modal);
-    console.log(modal);
+  var $images = $('.starwars-image');
+  $images.each(function (el) {
+    debugger;
+    var $thisImage = $images[el];
+    $images[el].on('click', function () {
+      console.log($images[el]);
+    });
   });
-  console.log($array);
 
-  var $infoModals = $array.map(function (el) {
-    $('#' + el).modal();
-    console.log('Soy yo');
-    var characterInfoRequest = new XMLHttpRequest();
-    characterInfoRequest.open('GET', 'https://swapi.co/api/people/');
-    characterInfoRequest.onload = bringInfo;
-    characterInfoRequest.onerror = handleError;
-    characterInfoRequest.send();
-  });
+  // let $infoModals = $array.map(function(el) {
+  //   $(`#${el}`).modal();
+  //   console.log('Soy yo');
+  //   el.on('click', function() {
+  //     const characterInfoRequest = new XMLHttpRequest();
+  //     characterInfoRequest.open('GET', 'https://swapi.co/api/people/');
+  //     characterInfoRequest.onload = bringInfo;
+  //     characterInfoRequest.onerror = handleError;
+  //     characterInfoRequest.send();
+  //   });
+  // }); 
 
   $('#special-button').one('click', function () {
     var characterInfoRequest = new XMLHttpRequest();
