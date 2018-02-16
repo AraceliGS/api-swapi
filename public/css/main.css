@@ -7,6 +7,19 @@ body {
   background-image: url('../assets/images/background1.jpg');
 }
 
+.container .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.display-other-devices {
+  display: block;
+}
+
+.display-tablet {
+  display: none;
+}
+
 /* Estilos a la vista Register */
 
 /* Estilos al navbar */
@@ -42,7 +55,13 @@ input[type=email]:not(.browser-default), input[type=password]:not(.browser-defau
   font-size: 700;
 }
 
-/* Estilos a la visat principal */
+/* Estilos a la vista principal */
+
+/* Estilos al contenedor */
+
+.images-container {
+  margin-top: 2em;
+}
 
 /* Estilos a los contenedores de los personajes */
 
@@ -54,4 +73,24 @@ input[type=email]:not(.browser-default), input[type=password]:not(.browser-defau
   align-items: center;
   justify-content: center;
   margin-bottom: 2em;
+}
+
+@media(min-width: 601px){
+  .display-other-devices {
+    display: none;
+  }
+  
+  .display-tablet {
+    display: block;
+  }
+}
+
+@media(min-width: 993px) {
+  .display-other-devices {
+    display: block;
+  }
+  
+  .display-tablet {
+    display: none;
+  }
 }
