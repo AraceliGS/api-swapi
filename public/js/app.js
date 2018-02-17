@@ -17,7 +17,9 @@ $(document).ready(function () {
         $containerSwapi.find('.container-image').eq(i).append('<p class="img-name center-align"/>');
         $containerSwapi.find('img').eq(i).attr('src', 'https://starwars-visualguide.com/assets/img/characters/' + (i + 1) + '.jpg');
         /* $containerSwapi.find('img').eq(i).attr('data-name', response.results[i].name);
-        $containerSwapi.find('img').eq(i).attr('data-gender', response.results[i].gender); */
+        $containerSwapi.find('img').eq(i).attr('data-gender', response.results[i].gender); 
+        $containerSwapi.find('img').eq(i).attr('data-height',response.results[i].height);
+        $containerSwapi.find('img').eq(i).attr('data-birth',response.results[i].birth_year);*/
         $containerSwapi.find('p').eq(i).text(response.results[i].name);
       });
     },
