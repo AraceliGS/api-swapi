@@ -1,60 +1,34 @@
 'use strict';
 
 $(document).ready(function () {
-  var $responseContainer = $('#response-container');
-  var $infoContainer = $('#info-container');
-  var $currentIndex = 0;
-  var $listOfImages = $('.starwars-image');
-  $listOfImages.on('click', function (event) {
-    $infoContainer.innerHTML = '';
-    event.preventDefault();
-    $listOfImages.each(function (el) {
-      if ($listOfImages[el] === event.target) {
-        var thisImage = $listOfImages[el];
-        var thisIndex = el;
-        $currentIndex = thisIndex;
-        var characterInfoRequest = new XMLHttpRequest();
-        characterInfoRequest.open('GET', 'https://swapi.co/api/people/');
-        characterInfoRequest.onload = bringInfo;
-        characterInfoRequest.onerror = handleError;
-        characterInfoRequest.send();
+  var $containerSwapi = $('.container-swapi');
+  $containerSwapi.append('<div class="row margin-top-row"/>');
+
+  $.ajax({
+    url: 'https://swapi.co/api/people/?page=1&format=json',
+    contentType: 'application/json',
+    method: 'GET',
+    success: function success(response) {
+      console.log(response.results);
+
+      $.each(response.results, function (i, obj) {
+        $containerSwapi.find('.row').append('<div class="container-image col s6 col m2"/>');
+        $containerSwapi.find('.container-image').eq(i).append('<img src="#" class="responsive-img modal-trigger" id="#myModal"/>');
+        $containerSwapi.find('.container-image').eq(i).append('<p class="img-name center-align"/>');
+        $containerSwapi.find('img').eq(i).attr('src', 'https://starwars-visualguide.com/assets/img/characters/' + (i + 1) + '.jpg');
+        /* $containerSwapi.find('img').eq(i).attr('data-name', response.results[i].name);
+        $containerSwapi.find('img').eq(i).attr('data-gender', response.results[i].gender); */
+        $containerSwapi.find('p').eq(i).text(response.results[i].name);
+      });
+    },
+    fail: function fail(request) {
+      if (request) {
+        alert(request.message);
       }
-    });
+    }
   });
 
-  $('#special-button').one('click', function () {
-    var characterInfoRequest = new XMLHttpRequest();
-    characterInfoRequest.open('GET', 'https://swapi.co/api/people/');
-    characterInfoRequest.onload = bringInfo;
-    characterInfoRequest.onerror = handleError;
-    characterInfoRequest.send();
-  });
-
-  function bringInfo(event) {
-    // debugger;
-    var data = JSON.parse(this.responseText);
-    console.log(data);
-    console.log(data.results);
-    var response = data.results;
-    var character = data.results[$currentIndex];
-    var name = character.name;
-    var gender = character.gender;
-    var height = character.height;
-    var birthYear = character.birth_year;
-    // debugger;
-    var $modal = '<div id="modal1" class="modal"><div class="modal-content"><h4>' + name + '</h4><ul><li><span>Gender: </span>' + gender + '</li><li><span>Height: </span>' + height + '</li><li><span>Birth Year: </span>' + birthYear + '</li></ul></div><div class="modal-footer">\n    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cerrar</a></div</div>';
-    // // return $container;
-    // let $container = document.createElement('div');        
-    // let $li = document.createElement('li');
-    // $li.innerHTML = `<div><span>Name: </span><span>${name}</span></div><div><span>Gender: </span><span>${gender}</span></div><div><span>Height: </span><span>${height}</span></div><div><span>Birth Year: </span><span>${birthYear}</span></div>`;
-    // $container.append($li);
-    // $container.className = 'character-container col s12 m6 l3';
-    // $infoContainer.append($container);
-    $infoContainer.append($modal);
-    return $('#modal1').modal();
-  };
-
-  function handleError() {
-    console.log('Se ha presentado un error');
-  };
+  // Modales
+  /* $containerSwapi.on('click', '.responsive-img', function() {
+    }); */
 });

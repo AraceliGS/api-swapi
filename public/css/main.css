@@ -12,6 +12,10 @@ body {
   margin-right: 0;
 }
 
+.margin-top-row {
+  margin-top: 3em;
+}
+
 .display-other-devices {
   display: block;
 }
@@ -57,22 +61,13 @@ input[type=email]:not(.browser-default), input[type=password]:not(.browser-defau
 
 /* Estilos a la vista principal */
 
-/* Estilos al contenedor */
+/* Estilos a las imágenes */
 
-.images-container {
-  margin-top: 2em;
-}
-
-/* Estilos a los contenedores de los personajes */
-
-.character-container {
-  background-color: #fff;
-  list-style: none;
-  font-size: 1.2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 2em;
+.img-name {
+  background-color: white;
+  border-radius: 4px;
+  font-size: 1.05em;
+  font-weight: 500;
 }
 
 @media(min-width: 601px){

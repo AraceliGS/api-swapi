@@ -1,44 +1,35 @@
 $(document).ready(() => {
-  const $responseContainer = $('#response-container');
-  const $infoContainer = $('#info-container');
-  let $currentIndex = 0;
-  let $listOfImages = $('.starwars-image');
-  $listOfImages.on('click', (event) => {
-    $infoContainer.innerHTML = '';
-    event.preventDefault();
-    $listOfImages.each(function(el) {
-      if ($listOfImages[el] === event.target) {
-        let thisImage = $listOfImages[el];
-        let thisIndex = el; 
-        $currentIndex = thisIndex;
-        var characterInfoRequest = new XMLHttpRequest();
-        characterInfoRequest.open('GET', 'https://swapi.co/api/people/');
-        characterInfoRequest.onload = bringInfo;
-        characterInfoRequest.onerror = handleError;
-        characterInfoRequest.send();
-      }
-    });
-  });
-  
-  function bringInfo(event) {
-    // debugger;
-    const data = JSON.parse(this.responseText);
-    console.log(data);
-    console.log(data.results);
-    let response = data.results;
-    let character = data.results[$currentIndex];
-    const name = character.name;
-    const gender = character.gender;
-    const height = character.height;
-    const birthYear = character.birth_year;
-    // debugger;
-    let $modal = `<div id="modal1" class="modal"><div class="modal-content"><h4>${name}</h4><ul><li><span>Gender: </span>${gender}</li><li><span>Height: </span>${height}</li><li><span>Birth Year: </span>${birthYear}</li></ul></div><div class="modal-footer">
-    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cerrar</a></div</div>`;       
-    $infoContainer.append($modal);
-    return $('#modal1').modal();
-  };
+  const $containerSwapi = $('.container-swapi');
+  $containerSwapi.append('<div class="row margin-top-row"/>');
 
-  function handleError() {
-    console.log('Se ha presentado un error');
-  };
+  $.ajax({
+    url: 'https://swapi.co/api/people/?page=1&format=json',
+    contentType: 'application/json',
+    method: 'GET',
+    success: function(response) {
+      console.log(response.results);
+
+      $.each(response.results, function(i, obj) {
+        $containerSwapi.find('.row').append('<div class="container-image col s6 col m2"/>');
+        $containerSwapi.find('.container-image').eq(i).append('<img src="#" class="responsive-img modal-trigger" id="#myModal"/>');
+        $containerSwapi.find('.container-image').eq(i).append('<p class="img-name center-align"/>');
+        $containerSwapi.find('img').eq(i).attr('src', 'https://starwars-visualguide.com/assets/img/characters/' + (i + 1) + '.jpg');
+        /* $containerSwapi.find('img').eq(i).attr('data-name', response.results[i].name);
+        $containerSwapi.find('img').eq(i).attr('data-gender', response.results[i].gender); 
+        $containerSwapi.find('img').eq(i).attr('data-height',response.results[i].height);
+        $containerSwapi.find('img').eq(i).attr('data-birth',response.results[i].birth_year);*/
+        $containerSwapi.find('p').eq(i).text(response.results[i].name);
+      });
+    },
+    fail: function(request) {
+      if (request) {
+        alert(request.message);
+      }
+    }
+  });
+
+  // Modales
+  /* $containerSwapi.on('click', '.responsive-img', function() {
+
+  }); */
 });
