@@ -7,7 +7,6 @@ $(document).ready(function () {
   var $okPassword = void 0;
   /* Validando el correo */
   var checkingEmail = $email.on('input', function () {
-    debugger;
     console.log($(this).val());
     var PATTERNEMAIL = /^[a-zA-Z0-9\._-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
     console.log(PATTERNEMAIL.test($(this).val()));
