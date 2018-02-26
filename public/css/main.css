@@ -70,6 +70,32 @@ input[type=email]:not(.browser-default), input[type=password]:not(.browser-defau
   font-weight: 500;
 }
 
+.container-image-modal {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.th-1 {
+  background-color: #DFD9C4;
+  border: 1px dashed #000;
+}
+
+.th-2 {
+  font-weight: 400;
+  border: 1px dashed #000;
+}
+
+.close-button {
+  background-color: #DFD9C4;
+  font-weight: 700; 
+}
+
+.close-button:hover, .close-button:active, .close-button:focus {
+  color: #DFD9C4;
+  background-color: #000;
+  font-weight: 700; 
+}
+
 @media(min-width: 601px){
   .display-other-devices {
     display: none;
